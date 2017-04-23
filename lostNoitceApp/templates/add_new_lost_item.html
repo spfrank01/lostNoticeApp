@@ -1,0 +1,20 @@
+<html>
+	<head>
+        <title>Add new lost Noitce</title>
+    </head>
+    <body>
+        <h1>Add new lost Noitce</h1>
+        <form action="{% url 'save_new_item_lost' %}" method="POST">
+
+        <input name="name_item" id="id_name_item" placeholder="Enter name item" /></br>
+
+	<input name="detail" id="id_detail" placeholder="Enter Detail item lost" /></br>
+
+	<input name="your_name" id="id_your_name" placeholder="Enter Your name" /></br>
+
+	<input name="your_email" id="id_your_email" placeholder="Enter your e-mail" /></br>
+	<input type="submit" value="Submit">
+        	{% csrf_token %}
+        </form>
+    </body>
+</html>
