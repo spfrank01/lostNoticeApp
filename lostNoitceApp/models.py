@@ -8,3 +8,8 @@ class SaveLostNoitce(models.Model):
     your_name = models.CharField(max_length=200)
     your_email = models.CharField(max_length=200)
     your_telephone = models.CharField(max_length=200)
+
+class userData(models.Model):
+	username = models.CharField(max_length=100)
+	email = models.CharField(max_length=100)
+	time_register = models.DateTimeField('date published')

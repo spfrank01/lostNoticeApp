@@ -1,13 +1,15 @@
 <html>
 <head>
-    <title>Lose Noitce</title>
+    <title>Lose Notice</title>
 </head>
 <body>
-<h1>Lose Noitce</h1>
-
-<a href="{% url 'add_new_lost_item' %}" id="add_new_lost_item">NEW</a>
-
-
+<h1>Lose Notice</h1>
+<div>
+<a href="{% url 'login_page' %}" id="login_page">Login</a> 
+ | <a href="{% url 'register_page' %}" id="register_page">Register</a>
+</div>
+<br>
+list lost notice
 <table id="id_list_table">
 </table>
 {% if all_lost_noitce_list %}

@@ -1,5 +1,16 @@
-<h1>Detail Lost Noitce</h1>
-<h2>{{all_lost_noitce_list.name_item}}</h2> <br>
-<div id="detail">{{all_lost_noitce_list.detail}}</div> <br>
-<div id="your_name">{{all_lost_noitce_list.your_name}}</div> <br>
-<div id="your_email">{{all_lost_noitce_list.your_email}}</div> <br>
+<html>
+<head>
+    <title>Lose Notice</title>
+</head>
+<body>
+
+<h1>Detail Lost Notice</h1>
+<h2>{{lost_noitce_list.name_item}}</h2> <br>
+<div id="detail">{{lost_noitce_list.detail}}</div> <br>
+<div id="your_name">{{lost_noitce_list.your_name}}</div> <br>
+<div id="your_email">{{lost_noitce_list.your_email}}</div> <br>
+<br>
+<a href="{% url 'home' %}" id="back_to_homepage">Back to Homepage</a>
+
+</body>
+</html>

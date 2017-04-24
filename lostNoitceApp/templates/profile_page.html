@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Lose Notice</title>
+</head>
+<body>
+<h1>Profile</h1>
+Username : <B>{{user_data.username}}</B> <br>
+E-mail : <B>{{user_data.email}}</B> <br>
+<br>
+lost notice list
+<table id="id_list_table">
+</table>
+{% if lost_noitce_list %}
+	{% for SaveLostNoitce in lost_noitce_list %}
+		<tr><td><a href="{% url 'detail_lost_item' SaveLostNoitce.id %}">{{ SaveLostNoitce.name_item }}</a></td></tr> <br>
+	{% endfor %}
+{% endif %}
+<br>
+<a href="{% url 'add_new_lost_item' %}" id="add_new_lost_item">Add New Lost Notice</a>
+</body>
+</html>

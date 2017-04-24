@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Lose Notice</title>
+</head>
+<body>
+<h1>Register</h1>
+
+
+<form action="{% url 'register_complete' %}" method="POST">
+
+	<input name="username" id="id_your_name" placeholder="Enter Your name" /></br>
+
+	<input name="email" id="id_your_email" placeholder="Enter your e-mail" /></br>
+
+	<input type="submit" value="Register">
+	{% csrf_token %}
+        </form>
+<br>
+<a href="{% url 'home' %}" id="back_to_homepage">Back to Homepage</a>
+</body>
+</html>
