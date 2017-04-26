@@ -5,10 +5,13 @@
 <body>
 
 <h1>Detail Lost Notice</h1>
-<h2>{{lost_noitce_list.name_item}}</h2> <br>
-<div id="detail">{{lost_noitce_list.detail}}</div> <br>
-<div id="your_name">{{lost_noitce_list.your_name}}</div> <br>
-<div id="your_email">{{lost_noitce_list.your_email}}</div> <br>
+<h2>Name item : {{lost_noitce_list.name_item}}</h2> <br>
+<div id="detail">Detail :    {{lost_noitce_list.detail}}</div> <br>
+<div id="detail">Time lost : {{lost_noitce_list.time_lost}}</div> <br>
+<div id="detail">Location :  {{lost_noitce_list.location_lost}}</div> <br>
+<div id="detail">Found It :  {{lost_noitce_list.found_it}}</div> <br>
+<div id="your_name">Name item : {{lost_noitce_list.your_name}}</div> <br>
+<div id="your_email">Name item : {{lost_noitce_list.your_email}}</div> <br>
 <br>
 <a href="{% url 'home' %}" id="back_to_homepage">Back to Homepage</a>
 

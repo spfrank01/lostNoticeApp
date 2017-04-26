@@ -13,8 +13,8 @@ list lost notice
 <table id="id_list_table">
 </table>
 {% if all_lost_noitce_list %}
-	{% for SaveLostNoitce in all_lost_noitce_list %}
-		<tr><td><a href="{% url 'detail_lost_item' SaveLostNoitce.id %}">{{ SaveLostNoitce.name_item }}</a></td></tr> <br>
+	{% for LostNoticeList in all_lost_noitce_list %}
+		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}">{{ LostNoticeList.name_item }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
 
