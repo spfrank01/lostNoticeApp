@@ -17,6 +17,13 @@ list lost notice
 		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}">{{ LostNoticeList.name_item }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
+<br>
+Find owner
+{% if all_found_owner %}
+	{% for FindOwnerList in all_found_owner %}
+		<tr><td><a href="{% url 'detail_found_owner' FindOwnerList.id %}">{{ FindOwnerList.name_item }}</a></td></tr> <br>
+	{% endfor %}
+{% endif %}
 
 </body>
 </html>

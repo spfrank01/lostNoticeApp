@@ -9,11 +9,11 @@ urlpatterns = [
     #url(r'^profile/(?P<user_id>[0-9]+)/add_new_lost_item/$', views.add_new_lost_item, name='add_new_lost_item'),
     url(r'^profile/add_new_lost_item/$', views.add_new_lost_item, name='add_new_lost_item'),
     url(r'^save_new_item_lost/$', views.save_new_item_lost, name='save_new_item_lost'),
-    url(r'^/lost_notice/(?P<id>[0-9]+)/$', views.detail_lost_item, name='detail_lost_item'),
+    url(r'^lost_notice/(?P<id>[0-9]+)/$', views.detail_lost_item, name='detail_lost_item'),
     #found owner
-    #url(r'^add_new_found_owner/$', views.add_new_found_owner, name='add_new_found_owner'),
+    url(r'^add_new_found_owner/$', views.add_new_found_owner, name='add_new_found_owner'),
     url(r'^save_new_found_owner/$', views.save_new_found_owner, name='save_new_found_owner'),
-    url(r'^/found_owner/(?P<id>[0-9]+)/$', views.detail_found_owner, name='detail_found_owner'),
+    url(r'^found_owner/(?P<id>[0-9]+)/$', views.detail_found_owner, name='detail_found_owner'),
 
     #register
     url(r'^register_page/$', views.register_page, name='register_page'),
