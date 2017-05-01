@@ -18,7 +18,7 @@ list lost notice
 	{% endfor %}
 {% endif %}
 <br>
-Find owner
+Find owner<br>
 {% if all_found_owner %}
 	{% for FindOwnerList in all_found_owner %}
 		<tr><td><a href="{% url 'detail_found_owner' FindOwnerList.id %}">{{ FindOwnerList.name_item }}</a></td></tr> <br>

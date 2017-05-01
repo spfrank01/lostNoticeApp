@@ -12,8 +12,11 @@ def home_page(request):
 	return render(request, 'homepage.html', context)
 
 #Lost Notice
-def add_new_lost_item(request):
-	return render(request, 'add_new_lost_item.html')
+def add_new_lost_item(request, user_id):
+	user_data = userData.objects.get(id=user_id)
+
+	context = {	'user_data' : user_data }
+	return render(request, 'add_new_lost_item.html', context)
 
 def save_new_item_lost(request):
 	try:
@@ -50,14 +53,17 @@ def detail_lost_item(request, id):
 	return render(request, 'detail_found_owner.html', context)
 
 #Found owner
-def add_new_found_owner(request):
-	return render(request, 'add_new_found_owner.html')
+def add_new_found_owner(request, user_id):
+	user_data = userData.objects.get(id=user_id)
+
+	context = {	'user_data' : user_data }
+	return render(request, 'add_new_found_owner.html', context)
 
 def save_new_found_owner(request):
 	try:
 		name_item = request.POST['name_item']
-		time_found = request.POST['time_lost']
-		location_found = request.POST['location_lost']
+		time_found = request.POST['time_found']
+		location_found = request.POST['location_found']
 		detail = request.POST['detail']
 		your_name = request.POST['your_name']
 		your_email = request.POST['your_email']
@@ -72,7 +78,7 @@ def save_new_found_owner(request):
 			detail=detail, 
 			time_found=time_found,
 			location_found=location_found,
-			found_it=False,
+			found_owner=False,
 			your_name=your_name, 
 			your_email=your_email,
 			time_submit=timezone.now()
