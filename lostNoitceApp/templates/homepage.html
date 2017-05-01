@@ -9,7 +9,7 @@
  | <a href="{% url 'register_page' %}" id="register_page">Register</a>
 </div>
 <br>
-list lost notice
+lost notice List
 <table id="id_list_table">
 </table>
 {% if all_lost_noitce_list %}
@@ -18,7 +18,7 @@ list lost notice
 	{% endfor %}
 {% endif %}
 <br>
-Find owner<br>
+Find owner List<br>
 {% if all_found_owner %}
 	{% for FindOwnerList in all_found_owner %}
 		<tr><td><a href="{% url 'detail_found_owner' FindOwnerList.id %}">{{ FindOwnerList.name_item }}</a></td></tr> <br>

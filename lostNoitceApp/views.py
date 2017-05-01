@@ -11,6 +11,8 @@ def home_page(request):
 				'all_found_owner'		: all_found_owner }
 	return render(request, 'homepage.html', context)
 
+########################################################################################
+########################################################################################
 #Lost Notice
 def add_new_lost_item(request, user_id):
 	user_data = userData.objects.get(id=user_id)
@@ -50,8 +52,10 @@ def detail_lost_item(request, id):
 	lost_noitce_list = LostNoticeList.objects.get(id=id)
 
 	context = {	'lost_noitce_list' : lost_noitce_list }
-	return render(request, 'detail_found_owner.html', context)
+	return render(request, 'detail_lost_item.html', context)
 
+########################################################################################
+########################################################################################
 #Found owner
 def add_new_found_owner(request, user_id):
 	user_data = userData.objects.get(id=user_id)
@@ -92,6 +96,8 @@ def detail_found_owner(request, id):
 	context = {	'found_owner_list' : found_owner_list }
 	return render(request, 'detail_found_owner.html', context)
 
+########################################################################################
+########################################################################################
 #register
 def register_page(request):
 	return render(request, 'register_page.html')
@@ -104,27 +110,40 @@ def register_complete(request):
 		username = " "
 		email = " "
 	else:
-		saveNewUser = userData(
-			username=username, 
-			email=email, 
-			time_register=timezone.now()
-		)
-		saveNewUser.save()
-		return render(request, 'register_complete.html')
+		user_check = userData.objects.filter(username=username)
+		if user_check or username=="":
+			pass
+		else:
+			saveNewUser = userData(
+				username=username, 
+				email=email, 
+				time_register=timezone.now()
+			)
+			saveNewUser.save()
+		context = {'user_check' : user_check,
+					'username'	: username}
+		return render(request, 'register_check.html', context)
 
 #login
 def login_page(request):
 	return render(request, 'login_page.html')
+
 def login_check(request):	
 	try:
-		username = request.POST['username']
+		username = request.POST['your_name']
 	except:
 		username = ""
 	else:
-
-		context = {	'username' : username }
+		user_check = userData.objects.filter(username=username)
+		if user_check:
+			user_data = userData.objects.get(username=username)
+		else:
+			user_data = 'not_user'
+			
+		context = {	'user_data'  : user_data,
+					'username' : username,
+					'user_check' : user_check}
 		return render(request, 'login_check.html', context)
-	return render(request, 'login_check.html')
 
 def profile(request, user_id):
 	#user_data = userData.objects.order_by('-time_register')[:]

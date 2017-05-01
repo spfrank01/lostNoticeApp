@@ -17,7 +17,7 @@ urlpatterns = [
 
     #register
     url(r'^register_page/$', views.register_page, name='register_page'),
-    url(r'^register_complete/$', views.register_complete, name='register_complete'),
+    url(r'^register_complete/$', views.register_complete, name='register_check'),
 
     #login
     url(r'^login_page/$', views.login_page, name='login_page'),

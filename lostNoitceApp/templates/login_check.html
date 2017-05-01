@@ -3,9 +3,13 @@
     <title>Lose Notice</title>
 </head>
 <body>
+{% if user_check %}
 <h1>Login Complete</h1>
-{{username}}
-<a href="{% url 'profile'  1 %}" id="to_profile">Go To Profile</a>
-
+Welcome {{user_data.username}}<br>
+<a href="{% url 'profile'  user_data.id %}" id="to_profile">Go To Profile</a>
+{% else %}
+<h1>Not user : {{username}}</h1>
+<a href="{% url 'register_page' %}" id="register_page">Register</a>
+{% endif %}
 </body>
 </html>
