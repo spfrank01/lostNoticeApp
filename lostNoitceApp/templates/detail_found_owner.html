@@ -4,16 +4,16 @@
 </head>
 <body>
 
-<h1>Detail Found Owner</h1>
+<h1>Detail Find Owner</h1>
 <h2>Name item : {{found_owner_list.name_item}}</h2> <br>
 <div id="detail">Detail :    {{found_owner_list.detail}}</div> <br>
 <div id="detail">Time lost : {{found_owner_list.time_found}}</div> <br>
 <div id="detail">Location :  {{found_owner_list.location_found}}</div> <br>
-<div id="detail">Found It :  {{found_owner_list.found_owner}}</div> <br>
+<div id="detail">Find status :  {{found_owner_list.found_owner}}</div> <br>
 <div id="your_name">Username : {{found_owner_list.your_name}}</div> <br>
 <div id="your_email">Email : {{found_owner_list.your_email}}</div> <br>
 <br>
-<a href="{% url 'home' %}" id="back_to_homepage">Back to Homepage</a>
+<a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
 
 </body>
 </html>

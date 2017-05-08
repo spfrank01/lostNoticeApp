@@ -19,7 +19,7 @@ def add_new_lost_item(request, user_id):
 
 	context = {	'user_data' : user_data }
 	return render(request, 'add_new_lost_item.html', context)
-
+	
 def save_new_item_lost(request):
 	try:
 		name_item = request.POST['name_item']
@@ -111,7 +111,7 @@ def register_complete(request):
 		email = " "
 	else:
 		user_check = userData.objects.filter(username=username)
-		if user_check or username=="":
+		if user_check:
 			pass
 		else:
 			saveNewUser = userData(
@@ -127,6 +127,8 @@ def register_complete(request):
 #login
 def login_page(request):
 	return render(request, 'login_page.html')
+
+from django.contrib.auth import authenticate, login
 
 def login_check(request):	
 	try:
@@ -159,3 +161,6 @@ def profile(request, user_id):
 				'found_owner_list' : found_owner_list, 
 				'user_data' : user_data }
 	return render(request, 'profile_page.html', context)
+
+def about(request):
+	return render(request, 'about.html')

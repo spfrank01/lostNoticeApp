@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'^login_check/$', views.login_check, name='login_check'),
     url(r'^profile/(?P<user_id>[0-9]+)/$', views.profile, name='profile'),
     # url(r'^admin/', include(admin.site.urls)),
+    #About
+    url(r'^about/$', views.about, name='about'),
 ]

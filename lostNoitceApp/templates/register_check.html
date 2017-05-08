@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Lose Notice</title>
+</head>
+<body>
+
+{% if user_check %}
+<h1>Register Failed</h1>
+User : {{username}}<br>
+<a href="{% url 'register_page' %}" id="register_page">Register Again</a>
+
+{% else %}
+<h1>Register Complete</h1>
+User : {{username}}<br>
+<a href="{% url 'login_page' %}" id="login_page">Login</a> 
+{% endif %}
+
+<br>
+<a href="{% url 'home' %}" id="back_to_homepage">Back to Homepage</a>
+
+
+
+</body>
+</html>
