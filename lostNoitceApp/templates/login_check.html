@@ -1,17 +1,26 @@
 <html>
 <head>
-    <title>Lose Notice</title>
+{% if user_check %}
+    <title>Lose Notice - Login Complete</title>
+
+{% else %}
+    <title>Lose Notice - Login Fail</title>
+
+{% endif %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 {% if user_check %}
 <h1>Login Complete</h1>
 Welcome {{user_data.username}}<br>
-<a href="{% url 'profile'  user_data.id %}" id="to_profile">Go To Profile</a>
+<div class="col-sm-1"><a href="{% url 'profile'  user_data.id %}" id="to_profile"  class="btn btn-primary">Go To Profile</a>
 
 {% else %}
 <h1>Not user : {{username}}</h1>
-<a href="{% url 'login_page' %}" id="login_page">Login Again</a> <br>
-<a href="{% url 'register_page' %}" id="register_page">Register</a>
+<div class="col-sm-1"><a href="{% url 'login_page' %}" id="login_page" class="btn btn-default">Login Again</a> <br>
+<div class="col-sm-1"><a href="{% url 'register_page' %}" id="register_page" class="btn btn-default">Register</a>
 {% endif %}
 </body>
 </html>

@@ -1,6 +1,9 @@
 <html>
 <head>
-    <title>Lose Notice</title>
+    <title>Lose Notice - Profile</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <h1>Profile</h1>
@@ -25,9 +28,9 @@ find owner list
 	{% endfor %}
 {% endif %}
 <br>
-<a href="{% url 'add_new_lost_item' user_data.id %}" id="add_new_lost_item">Add New Lost Notice</a>
+<a href="{% url 'add_new_lost_item' user_data.id %}" id="add_new_lost_item" class="btn btn-default">Add New Lost Notice</a>
 
 <br>
-<a href="{% url 'add_new_found_owner' user_data.id %}" id="add_new_found_owner">Add New Find Owner</a>
+<a href="{% url 'add_new_found_owner' user_data.id %}" id="add_new_found_owner" class="btn btn-default">Add New Find Owner</a>
 </body>
 </html>

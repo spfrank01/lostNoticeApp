@@ -1,6 +1,9 @@
 <html>
 <head>
-    <title>Lose Notice</title>
+    <title>Lose Notice - Add Lose Notice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <h1>Add Lose Notice</h1>
@@ -19,7 +22,7 @@ E-mail : <B>{{user_data.email}}</B> <br><br>
     <input type="hidden" name="your_name" id="id_your_name" value={{user_data.username}} ></br>
     <input type="hidden" name="your_email" id="id_your_email" value={{user_data.email}} ></br>
     
-	<input type="submit" value="Submit">
+	<input type="submit" value="Submit" class="btn btn-success">
         	{% csrf_token %}
         </form>
     </body>

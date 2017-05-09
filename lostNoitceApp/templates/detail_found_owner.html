@@ -1,6 +1,10 @@
 <html>
 <head>
-    <title>Lose Notice</title>
+    <title>Lose Notice - Detail Find Owner</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
 </head>
 <body>
 
@@ -13,7 +17,7 @@
 <div id="your_name">Username : {{found_owner_list.your_name}}</div> <br>
 <div id="your_email">Email : {{found_owner_list.your_email}}</div> <br>
 <br>
-<a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
+<div class="col-sm-1"><a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
 
 </body>
 </html>
