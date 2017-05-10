@@ -5,25 +5,32 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body><div class="container">
 <h1>Add Lose Notice</h1>
 Username : <B>{{user_data.username}}</B> <br>
 E-mail : <B>{{user_data.email}}</B> <br><br>
         <form action="{% url 'save_new_item_lost' %}" method="POST">
 
-    Name Item : <input name="name_item" id="id_name_item" placeholder="Enter name item" /></br>
+      
+    <div class="col-sm-4">
+    Title : <input type="text" class="form-control" name="title" id="id_title" placeholder="Enter title" /></br> 
+    
+    Name Item : <input type="text" class="form-control" name="name_item" id="id_name_item" placeholder="Enter name item" /></br>
+    
+	Detail : <textarea class="form-control" name="detail" id="id_detail" placeholder="Enter Detail item lost" /></textarea></br>
 
-	Detail : <input name="detail" id="id_detail" placeholder="Enter Detail item lost" /></br>
+    Time lost : <input type="text" class="form-control" name="time_lost" id="id_time_lost" placeholder="Enter Time lost" /></br>
 
-    Time lost : <input name="time_lost" id="id_time_lost" placeholder="Enter Time lost" /></br>
-
-    Location : <input name="location_lost" id="id_location_lost" placeholder="Enter Location lost" /></br>
+    Location : <input type="text" class="form-control" name="location_lost" id="id_location_lost" placeholder="Enter Location lost" /></br>
 
     <input type="hidden" name="your_name" id="id_your_name" value={{user_data.username}} ></br>
-    <input type="hidden" name="your_email" id="id_your_email" value={{user_data.email}} ></br>
+    <input type="hidden" name="your_email" id="id_your_email" value={{user_data.email}} >
     
 	<input type="submit" value="Submit" class="btn btn-success">
         	{% csrf_token %}
         </form>
-    </body>
+    <br><br>
+    <a href="{% url 'profile'  user_data.id %}" id="to_profile"  class="btn btn-primary">Back To Profile</a>
+    <a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
+</body>
 </html>

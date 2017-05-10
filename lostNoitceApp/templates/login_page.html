@@ -5,19 +5,21 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body><div class="container">
+
 <h1>Login</h1>
 
 
 <form action="{% url 'login_check' %}" method="POST">
-
-	<input name="your_name" id="id_your_name" placeholder="Enter Your name" /></br>
+	<br>
+	<div class="col-sm-4">
+	Username : <input type="text" class="form-control" name="your_name" id="id_your_name" placeholder="Enter Your name" /></br>
 
 	<input type="submit" value="Login" class="btn btn-success">
 	{% csrf_token %}
         </form>
 
-<br>
-<div class="col-sm-1"><a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
+<br><br>
+<a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
 </body>
 </html>

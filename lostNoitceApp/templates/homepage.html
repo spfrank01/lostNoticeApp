@@ -18,19 +18,17 @@
  | <a href="{% url 'about' %}" id="about" class="btn btn-default">About</a>
 </div>
 <br>
-lost notice List
-<table id="id_list_table">
-</table>
+lost notice List <br>
 {% if all_lost_noitce_list %}
 	{% for LostNoticeList in all_lost_noitce_list %}
-		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}" class="btn btn-link">{{ LostNoticeList.name_item }}</a></td></tr> <br>
+		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}" class="btn btn-link">{{ LostNoticeList.title }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
 <br>
 Find owner List<br>
 {% if all_found_owner %}
 	{% for FindOwnerList in all_found_owner %}
-		<tr><td><a href="{% url 'detail_found_owner' FindOwnerList.id %}" class="btn btn-link">{{ FindOwnerList.name_item }}</a></td></tr> <br>
+		<tr><td><a href="{% url 'detail_found_owner' FindOwnerList.id %}" class="btn btn-link">{{ FindOwnerList.title }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
 </div>	

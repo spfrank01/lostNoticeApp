@@ -5,20 +5,21 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body><div class="container">
+
 <h1>Register</h1>
 
 
 <form action="{% url 'register_check' %}" method="POST">
+    <div class="col-sm-4">
+	Username : <input type="text" class="form-control" name="username" id="id_your_name" placeholder="Enter Your name" /></br>
 
-	<input name="username" id="id_your_name" placeholder="Enter Your name" /></br>
-
-	<input name="email" id="id_your_email" placeholder="Enter your e-mail" /></br>
+	E-mail : <input type="text" class="form-control" name="email" id="id_your_email" placeholder="Enter your e-mail" /></br>
 
 	<input type="submit" value="Register" class="btn btn-success">
 	{% csrf_token %}
         </form>
-<br>
-<div class="col-sm-1"><a href="{% url 'home' %}" id="back_to_homepage"  class="btn btn-primary">Back to Homepage</a>
+<br><br>
+<a href="{% url 'home' %}" id="back_to_homepage"  class="btn btn-primary">Back to Homepage</a>
 </body>
 </html>

@@ -5,18 +5,19 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-
-<h1>Detail Lost Notice</h1>
-<h2>Name item : {{lost_noitce_list.name_item}}</h2> <br>
+<body><div class="container">
+<h2>Detail Lost Notice</h2>
+<h1>{{lost_noitce_list.title}}</h1> <br>
+<div id="name_item">Name item :    {{lost_noitce_list.name_item}}</div> <br>
 <div id="detail">Detail :    {{lost_noitce_list.detail}}</div> <br>
-<div id="detail">Time lost : {{lost_noitce_list.time_lost}}</div> <br>
-<div id="detail">Location :  {{lost_noitce_list.location_lost}}</div> <br>
-<div id="detail">Found It :  {{lost_noitce_list.found_it}}</div> <br>
+<div id="time_lost">Time lost : {{lost_noitce_list.time_lost}}</div> <br>
+<div id="Location">Location :  {{lost_noitce_list.location_lost}}</div> <br>
+<div id="found_it">Found It :  {{lost_noitce_list.found_it}}</div> <br>
 <div id="your_name">Username : {{lost_noitce_list.your_name}}</div> <br>
 <div id="your_email">Email : {{lost_noitce_list.your_email}}</div> <br>
 <br>
-<div class="col-sm-1"><a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
+<a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
+
 
 </body>
 </html>

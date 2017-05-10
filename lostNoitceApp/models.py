@@ -2,16 +2,18 @@ from django.db import models
 
 # Create your models here.
 class LostNoticeList(models.Model):
-    name_item = models.CharField(max_length=200)
-    time_lost = models.CharField(max_length=200)
-    location_lost = models.CharField(max_length=200)
-    detail = models.CharField(max_length=1000)
-    your_name = models.CharField(max_length=200)
-    your_email = models.CharField(max_length=200)
-    found_it = models.BooleanField(default=False)
-    time_submit = models.DateTimeField('date published')
+	title = models.CharField(max_length=200)
+	name_item = models.CharField(max_length=200)
+	time_lost = models.CharField(max_length=200)
+	location_lost = models.CharField(max_length=200)
+	detail = models.CharField(max_length=1000)
+	your_name = models.CharField(max_length=200)
+	your_email = models.CharField(max_length=200)
+	found_it = models.BooleanField(default=False)
+	time_submit = models.DateTimeField('date published')
 
 class FindOwnerList(models.Model):
+    title = models.CharField(max_length=200)
     name_item = models.CharField(max_length=200)
     time_found = models.CharField(max_length=200)
     location_found = models.CharField(max_length=200)

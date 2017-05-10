@@ -12,19 +12,19 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body><div class="container">
 
 {% if user_check %}
 <h1>Register Failed</h1>
 User : {{username}}<br>
-<a href="{% url 'register_page' %}" id="register_page">Register Again</a>
+<a href="{% url 'register_page' %}" id="register_page" class="btn btn-warning">Register Again</a>
 
 {% else %}
 <h1>Register Complete</h1>
-User : {{username}}<br>
+User : {{username}}<br><br>
 <a href="{% url 'login_page' %}" id="login_page" class="btn btn-success">Login</a> 
 {% endif %}
-
+<br>
 <br>
 <a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
 

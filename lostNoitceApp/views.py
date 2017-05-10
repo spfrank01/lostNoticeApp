@@ -22,6 +22,7 @@ def add_new_lost_item(request, user_id):
 	
 def save_new_item_lost(request):
 	try:
+		title = request.POST['title']
 		name_item = request.POST['name_item']
 		time_lost = request.POST['time_lost']
 		location_lost = request.POST['location_lost']
@@ -29,12 +30,14 @@ def save_new_item_lost(request):
 		your_name = request.POST['your_name']
 		your_email = request.POST['your_email']
 	except:
+		title = ""
 		name_item = ""
 		detail = ""
 		your_name = ""
 		your_email = ""
 	else:
 		saveData = LostNoticeList(
+			title=title,
 			name_item=name_item, 
 			detail=detail, 
 			time_lost=time_lost,
@@ -65,6 +68,7 @@ def add_new_found_owner(request, user_id):
 
 def save_new_found_owner(request):
 	try:
+		title = request.POST['title']
 		name_item = request.POST['name_item']
 		time_found = request.POST['time_found']
 		location_found = request.POST['location_found']
@@ -72,12 +76,14 @@ def save_new_found_owner(request):
 		your_name = request.POST['your_name']
 		your_email = request.POST['your_email']
 	except:
+		title = ""
 		name_item = ""
 		detail = ""
 		your_name = ""
 		your_email = ""
 	else:
 		saveData = FindOwnerList(
+			title=title,
 			name_item=name_item, 
 			detail=detail, 
 			time_found=time_found,

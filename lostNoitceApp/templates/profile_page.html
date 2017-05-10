@@ -5,7 +5,8 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body><div class="container">
+
 <h1>Profile</h1>
 Username : <B>{{user_data.username}}</B> <br>
 E-mail : <B>{{user_data.email}}</B> <br>
@@ -15,7 +16,7 @@ lost notice list
 </table>
 {% if lost_noitce_list %}
 	{% for LostNoticeList in lost_noitce_list %}
-		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}">{{ LostNoticeList.name_item }}</a></td></tr> <br>
+		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}">{{ LostNoticeList.title }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
 
@@ -24,13 +25,15 @@ find owner list
 <br>
 {% if found_owner_list %}
 	{% for FindOwnerList in found_owner_list %}
-		<tr><td><a href="{% url 'detail_lost_item' FindOwnerList.id %}">{{ FindOwnerList.name_item }}</a></td></tr> <br>
+		<tr><td><a href="{% url 'detail_lost_item' FindOwnerList.id %}">{{ FindOwnerList.title }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
 <br>
 <a href="{% url 'add_new_lost_item' user_data.id %}" id="add_new_lost_item" class="btn btn-default">Add New Lost Notice</a>
 
-<br>
+<br><br>
 <a href="{% url 'add_new_found_owner' user_data.id %}" id="add_new_found_owner" class="btn btn-default">Add New Find Owner</a>
+<br><br><br>
+<a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
 </body>
 </html>
