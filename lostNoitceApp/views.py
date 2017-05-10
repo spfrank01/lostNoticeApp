@@ -48,7 +48,10 @@ def save_new_item_lost(request):
 			time_submit=timezone.now()
 		)
 		saveData.save()
-	return render(request, 'go_to_homepage.html')
+		user_data = userData.objects.get(username=your_name)
+
+		context = {	'user_data' : user_data }
+	return render(request, 'go_to_homepage.html', context)
 
 
 def detail_lost_item(request, id):
@@ -94,7 +97,10 @@ def save_new_found_owner(request):
 			time_submit=timezone.now()
 		)
 		saveData.save()
-	return render(request, 'go_to_homepage.html')
+		user_data = userData.objects.get(username=your_name)
+
+		context = {	'user_data' : user_data }
+	return render(request, 'go_to_homepage.html', context)
 
 def detail_found_owner(request, id):
 	found_owner_list = FindOwnerList.objects.get(id=id)
