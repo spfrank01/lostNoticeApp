@@ -51,7 +51,7 @@ def save_new_item_lost(request):
 		user_data = userData.objects.get(username=your_name)
 
 		context = {	'user_data' : user_data }
-	return render(request, 'go_to_homepage.html', context)
+	return profile(request, user_data.id)
 
 
 def detail_lost_item(request, id):
@@ -100,7 +100,7 @@ def save_new_found_owner(request):
 		user_data = userData.objects.get(username=your_name)
 
 		context = {	'user_data' : user_data }
-	return render(request, 'go_to_homepage.html', context)
+	return profile(request, user_data.id)
 
 def detail_found_owner(request, id):
 	found_owner_list = FindOwnerList.objects.get(id=id)
@@ -136,6 +136,8 @@ def register_complete(request):
 					'username'	: username}
 		return render(request, 'register_check.html', context)
 
+########################################################################################
+########################################################################################
 #login
 def login_page(request):
 	return render(request, 'login_page.html')
@@ -151,24 +153,22 @@ def login_check(request):
 		user_check = userData.objects.filter(username=username)
 		if user_check:
 			user_data = userData.objects.get(username=username)
+			return profile(request, user_data.id)
 		else:
 			user_data = 'not_user'
 			
 		context = {	'user_data'  : user_data,
 					'username' : username,
 					'user_check' : user_check}
-		return render(request, 'login_check.html', context)
+		return render(request, 'login_fail.html', context)
 
 def profile(request, user_id):
-	#user_data = userData.objects.order_by('-time_register')[:]
-	#user_data = userData.objects.get(username="Peter")
 	user_data = userData.objects.get(id=user_id)
 	username = user_data.username
 	lost_noitce_list = LostNoticeList.objects.filter(your_name=username)
 	found_owner_list = FindOwnerList.objects.filter(your_name=username)
-	#lost_noitce_list = LostNoticeList.objects.order_by('time_submit')[:]
 
-	#print(lost_noitce_list)
+	
 	context = {	'lost_noitce_list' : lost_noitce_list,
 				'found_owner_list' : found_owner_list, 
 				'user_data' : user_data }

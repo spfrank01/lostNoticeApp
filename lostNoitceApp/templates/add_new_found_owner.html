@@ -1,11 +1,8 @@
-<html>
-<head>
-    <title>Lose Notice - Add New-Found</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body><div class="container">
+{% extends "base.html" %}
+{% block title %}Add New-Found{% endblock %}
+
+{% block content %} 
+
 <h1>Add New Found </h1>
 Username : <B>{{user_data.username}}</B> <br>
 E-mail : <B>{{user_data.email}}</B> <br><br>
@@ -16,21 +13,18 @@ E-mail : <B>{{user_data.email}}</B> <br><br>
 
     Name Item : <input type="text" class="form-control" name="name_item" id="id_name_item" placeholder="Enter name item" /></br>
 
-	Detail :  <textarea class="form-control" name="detail" id="id_detail" placeholder="Enter Detail item lost" /></textarea></br>
+    Detail :  <textarea class="form-control" name="detail" id="id_detail" placeholder="Enter Detail item lost" /></textarea></br>
 
     Time Found : <input type="text" class="form-control" name="time_found" id="id_time_lost" placeholder="Enter Time lost" /></br>
 
     Location : <input type="text" class="form-control" name="location_found" id="id_location_lost" placeholder="Enter Location lost" /></br>
 
-	<input type="hidden" name="your_name" id="id_your_name" value={{user_data.username}} ></br>
+    <input type="hidden" name="your_name" id="id_your_name" value={{user_data.username}} ></br>
     <input type="hidden" name="your_email" id="id_your_email" value={{user_data.email}} ></br>
 
-	<input type="submit" value="Submit" class="btn btn-success">
-        	{% csrf_token %}
+    <input type="submit" value="Submit" class="btn btn-success">
+            {% csrf_token %}
         </form>
-        
-    <br><br>
-    <a href="{% url 'profile'  user_data.id %}" id="to_profile"  class="btn btn-primary">Back To Profile</a>
-    <a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
-    </body>
-</html>
+
+
+ {% endblock %}

@@ -1,13 +1,11 @@
-<html>
-<head>
-    <title>Lose Notice - Detail Lost Notice</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body><div class="container">
+{% extends "base.html" %}
+{% block title %}Detail Lost Notice{% endblock %}
+
+{% block content %} 
+
 <h2>Detail Lost Notice</h2>
-<h1>{{lost_noitce_list.title}}</h1> <br>
+<h1> {{lost_noitce_list.title}} </h1>
+
 <div id="name_item">Name item :    {{lost_noitce_list.name_item}}</div> <br>
 <div id="detail">Detail :    {{lost_noitce_list.detail}}</div> <br>
 <div id="time_lost">Time lost : {{lost_noitce_list.time_lost}}</div> <br>
@@ -16,8 +14,6 @@
 <div id="your_name">Username : {{lost_noitce_list.your_name}}</div> <br>
 <div id="your_email">Email : {{lost_noitce_list.your_email}}</div> <br>
 <br>
-<a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
 
 
-</body>
-</html>
+ {% endblock %}

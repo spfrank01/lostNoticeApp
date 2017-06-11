@@ -1,18 +1,18 @@
-<html>
-<head>
-{% if user_check %}
-    <title>Lose Notice - Register Failed</title>
+{% extends "base.html" %}
 
-{% else %}
-    <title>Lose Notice - Register Complete</title>
+{% block title %}
 
-{% endif %}
-    <title>Lose Notice</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body><div class="container">
+	{% if user_check %}
+	    Register Failed
+
+	{% else %}
+		Login Complete
+
+	{% endif %}
+
+{% endblock %}
+
+{% block content %} 
 
 {% if user_check %}
 <h1>Register Failed</h1>
@@ -24,11 +24,5 @@ User : {{username}}<br>
 User : {{username}}<br><br>
 <a href="{% url 'login_page' %}" id="login_page" class="btn btn-success">Login</a> 
 {% endif %}
-<br>
-<br>
-<a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
 
-
-
-</body>
-</html>
+{% endblock %}

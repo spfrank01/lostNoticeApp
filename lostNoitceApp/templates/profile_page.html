@@ -1,11 +1,7 @@
-<html>
-<head>
-    <title>Lose Notice - Profile</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body><div class="container">
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %} 
 
 <h1>Profile</h1>
 Username : <B>{{user_data.username}}</B> <br>
@@ -33,7 +29,5 @@ find owner list
 
 <br><br>
 <a href="{% url 'add_new_found_owner' user_data.id %}" id="add_new_found_owner" class="btn btn-default">Add New Find Owner</a>
-<br><br><br>
-<a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
-</body>
-</html>
+
+ {% endblock %}

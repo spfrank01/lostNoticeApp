@@ -1,36 +1,23 @@
-<html>
-<head>
-    	<title>Lose Notice</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
 
+{% block content %} 
 
-<body>
-<div class="container">
-<div class="col-sm-4"><h1>Lose Notice</h1></div>
 <br>
-<div class="row">
-<div class="col-sm-3"></div>
-   <a href="{% url 'login_page' %}" id="login_page"  class="btn btn-default" >Login</a> 
- | <a href="{% url 'register_page' %}" id="register_page" class="btn btn-default">Register</a>
- | <a href="{% url 'about' %}" id="about" class="btn btn-default">About</a>
-</div>
-<br>
-lost notice List <br>
+<h1>lost notice List</h1>
 {% if all_lost_noitce_list %}
 	{% for LostNoticeList in all_lost_noitce_list %}
 		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}" class="btn btn-link">{{ LostNoticeList.title }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
 <br>
-Find owner List<br>
+<h1>Find owner List</h1>
 {% if all_found_owner %}
 	{% for FindOwnerList in all_found_owner %}
 		<tr><td><a href="{% url 'detail_found_owner' FindOwnerList.id %}" class="btn btn-link">{{ FindOwnerList.title }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
 </div>	
-</body>
-</html>
+
+
+ {% endblock %}

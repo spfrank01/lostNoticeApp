@@ -1,34 +1,22 @@
-<html>
-<head>
-    	<title>Lose Notice - About</title>
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
+{% block content %} 
 
-<body>
-	
-<div class="row">
-<div class="col-sm-1"></div>
-<div class="col-sm-3"><h1>About Lose Notice</h1></div>
-</div>
+<h1>About Lose Notice</h1>
+
+<section>
+	เป็นเว็บที่มีไว้แปะประกาศของหาย หรือหาของเจอแล้วมาประกาศหาเจ้าของก็ได้เหมือนกัน  
+ แต่ว่าตอนนี้ได้จำกัดบริเวณไว้ที่พระเจ้าเกล้าพระนครเหนือ
+</section>
 <br>
-<div class="row">	
-	<div class="col-sm-1"></div>เป็นเว็บที่มีไว้แปะประกาศของหาย หรือหาของเจอแล้วมาประกาศหาเจ้าของก็ได้เหมือนกัน  
- แต่ว่าตอนนี้ได้จำกัดบริเวณไว้ที่พระเจ้าเกล้าพระนครเหนือ <br><br>
-<div class="col-sm-1"></div>ซึ่งผู้ที่จะทำการติดประกาศจะต้องทำการสมัครสมาชิกก่อนถึงจะประกาศได้
-
-
-</div>
-<br><br>
-<div class="row">
-	<div class="col-sm-1"></div>
+<section>
+	ซึ่งผู้ที่จะทำการติดประกาศจะต้องทำการสมัครสมาชิกก่อนถึงจะประกาศได้
+</section>
+<br>
+<section>
 	พัฒนาโดย นายพุทธินันท์ เศษน้อย
-</div>
-	
-<br><br>
-<div class="col-sm-1"></div><a href="{% url 'home' %}" id="back_to_homepage" class="btn btn-primary">Back to Homepage</a>
+</section>
 
-</body>
-</html>
+ {% endblock %}
+
