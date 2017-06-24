@@ -9,7 +9,9 @@
 <form action="{% url 'login_check' %}" method="POST">
 	<br>
 	<div class="col-sm-4">
-	Username : <input type="text" class="form-control" name="your_name" id="id_your_name" placeholder="Enter Your name" /></br>
+	Username : <input type="text" class="form-control" name="name" id="id_name" placeholder="Enter Your name" /></br>
+
+	Password : <input type="Password" class="form-control" name="password" id="id_password" placeholder="Enter Your Password" /></br>
 
 	<input type="submit" value="Login" class="btn btn-success">
 	{% csrf_token %}

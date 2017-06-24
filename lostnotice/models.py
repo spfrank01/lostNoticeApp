@@ -26,4 +26,5 @@ class FindOwnerList(models.Model):
 class userData(models.Model):
 	username = models.CharField(max_length=100)
 	email = models.CharField(max_length=100)
+	password = models.CharField(max_length=100)
 	time_register = models.DateTimeField('date published')

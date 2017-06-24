@@ -3,6 +3,7 @@ from django.utils import timezone
 
 from .models import LostNoticeList, FindOwnerList, userData
 
+
 def home_page(request):
 	all_lost_noitce_list = LostNoticeList.objects.order_by('time_submit')[:]
 	all_found_owner = FindOwnerList.objects.order_by('time_found')[:]
@@ -118,9 +119,9 @@ def register_complete(request):
 	try:
 		username = request.POST['username']
 		email = request.POST['email']
+		password = request.POST['password']
 	except:
 		username = " "
-		email = " "
 	else:
 		user_check = userData.objects.filter(username=username)
 		if user_check:
@@ -129,6 +130,7 @@ def register_complete(request):
 			saveNewUser = userData(
 				username=username, 
 				email=email, 
+				password = password,
 				time_register=timezone.now()
 			)
 			saveNewUser.save()
@@ -142,23 +144,30 @@ def register_complete(request):
 def login_page(request):
 	return render(request, 'login_page.html')
 
-from django.contrib.auth import authenticate, login
+#from django.contrib.auth import authenticate, login
 
 def login_check(request):	
 	try:
-		username = request.POST['your_name']
+		username = request.POST['name']
+		password = request.POST['password']
 	except:
 		username = ""
 	else:
+		showH1 = ""
 		user_check = userData.objects.filter(username=username)
 		if user_check:
-			user_data = userData.objects.get(username=username)
-			return profile(request, user_data.id)
+			if password == user_check[0].password:
+				print("Hello ")
+				print(user_check[0].password)
+				user_data = userData.objects.get(username=username)
+				return profile(request, user_data.id)
+			else:
+				showH1 = "User : "+user_check[0].username+",  Password fail"
 		else:
-			user_data = 'not_user'
-			
+			showH1 = "Not User : "+username
+		user_data = 'not_user'	
 		context = {	'user_data'  : user_data,
-					'username' : username,
+					'showH1' : showH1,
 					'user_check' : user_check}
 		return render(request, 'login_fail.html', context)
 

@@ -8,9 +8,11 @@
 
 <form action="{% url 'register_check' %}" method="POST">
     <div class="col-sm-4">
-	Username : <input type="text" class="form-control" name="username" id="id_your_name" placeholder="Enter Your name" /></br>
+	Username : <input type="text" class="form-control" name="username" id="id_name" placeholder="Enter Your name" /></br>
 
-	E-mail : <input type="text" class="form-control" name="email" id="id_your_email" placeholder="Enter your e-mail" /></br>
+	E-mail : <input type="text" class="form-control" name="email" id="id_email" placeholder="Enter Your E-mail" /></br>
+
+	Password : <input type="Password" class="form-control" name="password" id="id_password" placeholder="Enter Your Password" /></br>
 
 	<input type="submit" value="Register" class="btn btn-success">
 	{% csrf_token %}
