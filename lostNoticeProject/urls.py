@@ -4,6 +4,7 @@ from lostnotice import views
 
 urlpatterns = [
     url(r'^$', views.home_page, name='home'),
+    url(r'^LFList/(?P<lPage>[0-9]+)/(?P<fPage>[0-9]+)/$', views.home_page, name='home'),
 
     #lost notice
     url(r'^(?P<user_id>[0-9]+)/add_new_lost_item/$', views.add_new_lost_item, name='add_new_lost_item'),

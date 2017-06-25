@@ -4,14 +4,37 @@ from django.utils import timezone
 from .models import LostNoticeList, FindOwnerList, userData
 
 
-def home_page(request):
-	all_lost_noitce_list = LostNoticeList.objects.order_by('time_submit')[:]
-	all_found_owner = FindOwnerList.objects.order_by('time_found')[:]
+def home_page(request, lPage = 1, fPage = 1):
+	lPage=int(lPage)
+	fPage=int(fPage)
+	N = 2
+	lost_noitce_list = LostNoticeList.objects.order_by('time_submit')[(int(lPage)-1)*N:int(lPage)*N]
+	found_owner_list = FindOwnerList.objects.order_by('time_found')[(int(fPage)-1)*N:int(fPage)*N]
 
-	context = {	'all_lost_noitce_list' 	: all_lost_noitce_list,
-				'all_found_owner'		: all_found_owner }
+	lost_notice_lastest = LostNoticeList.objects.order_by('-id')[0]
+	lost_last_page = int((lost_notice_lastest.id-1)/N+1)
+
+	found_owner_lastest = FindOwnerList.objects.order_by('-id')[0]
+	found_owner_page = int((found_owner_lastest.id-1)/N+1)
+	#if int(way) == 0:
+	#	lPage=lPage-1
+	##elif int(way) == 1:
+	#	lPage=lPage+1
+
+	valueList = {'lPage'	:  lPage,
+				'fPage' 	: fPage,
+				'leftLostPage'	: lPage-1,
+				'rightLostPage'	: lPage+1,
+				'leftFoundPage'	: fPage-1,
+				'rightFoundPage': fPage+1,
+				'lost_last_page'	: lost_last_page,
+				'found_owner_page'	: found_owner_page,
+				}
+
+	context = {	'lost_noitce_list' 	: lost_noitce_list,
+				'found_owner_list'	: found_owner_list,
+				'valueList'			: valueList }
 	return render(request, 'homepage.html', context)
-
 ########################################################################################
 ########################################################################################
 #Lost Notice

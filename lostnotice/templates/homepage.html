@@ -5,19 +5,41 @@
 
 <br>
 <h1>lost notice List</h1>
-{% if all_lost_noitce_list %}
-	{% for LostNoticeList in all_lost_noitce_list %}
+{% if lost_noitce_list %}
+	{% for LostNoticeList in lost_noitce_list %}
 		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}" class="btn btn-link">{{ LostNoticeList.title }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
+
+
+{% if valueList.lPage > 1 %}		
+		<a href="{% url 'home' valueList.leftLostPage valueList.fPage %}" class="btn btn-default" >to {{valueList.leftLostPage}} </a>
+{% endif %}
+now Page {{valueList.lPage}}
+
+{% if valueList.lPage < valueList.lost_last_page %} 
+		<a href="{% url 'home' valueList.rightLostPage valueList.fPage %}" class="btn btn-default" >to {{valueList.rightLostPage}} </a>
+{% endif %}
+
+
 <br>
 <h1>Find owner List</h1>
-{% if all_found_owner %}
-	{% for FindOwnerList in all_found_owner %}
+{% if found_owner_list %}
+	{% for FindOwnerList in found_owner_list %}
 		<tr><td><a href="{% url 'detail_found_owner' FindOwnerList.id %}" class="btn btn-link">{{ FindOwnerList.title }}</a></td></tr> <br>
 	{% endfor %}
 {% endif %}
-</div>	
 
 
-{% endblock %}
+{% if valueList.fPage > 1 %}		
+		<a href="{% url 'home' valueList.lPage valueList.leftFoundPage %}" class="btn btn-default" >to {{valueList.leftFoundPage}} </a>
+{% endif %}
+now Page {{valueList.fPage}}
+
+{% if valueList.fPage < valueList.found_owner_page %} 
+		<a href="{% url 'home' valueList.lPage valueList.rightFoundPage %}" class="btn btn-default" >to {{valueList.rightFoundPage}} </a>
+{% endif %}
+
+
+
+ {% endblock %}
