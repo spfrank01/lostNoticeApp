@@ -10,17 +10,21 @@ def home_page(request, lPage = 1, fPage = 1):
 	N = 2
 	lost_noitce_list = LostNoticeList.objects.order_by('time_submit')[(int(lPage)-1)*N:int(lPage)*N]
 	found_owner_list = FindOwnerList.objects.order_by('time_found')[(int(fPage)-1)*N:int(fPage)*N]
+	
 
-	lost_notice_lastest = LostNoticeList.objects.order_by('-id')[0]
-	lost_last_page = int((lost_notice_lastest.id-1)/N+1)
+	if LostNoticeList.objects.filter(id=1):
+		lost_notice_lastest = LostNoticeList.objects.order_by('-id')[0]
+		lost_last_page = int((lost_notice_lastest.id-1)/N+1)
+	else:
+		lost_last_page = 1
 
-	found_owner_lastest = FindOwnerList.objects.order_by('-id')[0]
-	found_owner_page = int((found_owner_lastest.id-1)/N+1)
-	#if int(way) == 0:
-	#	lPage=lPage-1
-	##elif int(way) == 1:
-	#	lPage=lPage+1
+	if FindOwnerList.objects.filter(id=1):
+		found_owner_lastest = FindOwnerList.objects.order_by('-id')[0]
+		found_owner_page = int((found_owner_lastest.id-1)/N+1)
+	else:
+		found_owner_page = 1
 
+		
 	valueList = {'lPage'	:  lPage,
 				'fPage' 	: fPage,
 				'leftLostPage'	: lPage-1,
