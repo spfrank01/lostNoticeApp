@@ -6,22 +6,33 @@ class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):  #2
         self.browser = webdriver.Firefox()
+        self.browser.get(self.live_server_url)
 
     def tearDown(self):  #3
         self.browser.quit()
 
-    def test_can_start_a_list_and_retrieve_it_later(self):
-        # Edith has heard about a cool new online to-do app. She goes
-        # to check out its homepage
-        self.browser.get(self.live_server_url)
+    def test_check_header_bar_and_check_first_homepage(self):
 
-        # She notices the page title and header mention to-do lists
-        print(self.browser.title)
-        print(self.browser.find_element_by_tag_name('h1').text)
-        print(self.browser.find_element_by_tag_name('h1').text)
-        self.fail('Finish the test!')  #6
+        # Check Title
+        self.assertIn('Home', self.browser.title)
 
-        # She is invited to enter a to-do item straight away
+        #Check Header Bar
+        link_header_bar = self.browser.find_elements_by_tag_name('a')
+        self.assertIn("Home", link_header_bar[0].text)
+        self.assertIn("Login", link_header_bar[1].text)
+        self.assertIn("Register", link_header_bar[2].text)
+        self.assertIn("About", link_header_bar[3].text)
+        print("Header bar of Homepage.. OK")
+        # No more link
+        #assert 4 == len(link_header_bar)
+        if len(link_header_bar) > 4:
+        	self.fail("Link not only Header Bar")
+
+        # Check h1 Tag ( have 2 tags )
+        h1_tag = self.browser.find_elements_by_tag_name('h1')
+        self.assertIn("lost notice List", h1_tag[0].text)
+        self.assertIn("Find owner List", h1_tag[1].text)
+        print("First Homepage.. OK")
 
 
 if __name__ == '__main__':  #7
