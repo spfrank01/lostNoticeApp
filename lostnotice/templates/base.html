@@ -43,10 +43,12 @@
     <a class="active" href="{% url 'home' %}" >Home</a>
     {% block extra_topnav %}{% endblock %}
     {% if 'profile' in request.path or  'add_new' in request.path %}
-        <a href="{% url 'profile'  user_data.id %}" id="to_profile">Profile</a>
+        <a href="{% url 'profile'  user_data.id %}">Profile</a>
+        <a href="{% url 'add_new_lost_item' user_data.id %}">Add New Lost Notice</a>
+        <a href="{% url 'add_new_found_owner' user_data.id %}">Add New Find Owner</a>
     {% else %}        
-    <a href="{% url 'login_page' %}">Login</a>
-    <a href="{% url 'register_page' %}">Register</a>
+        <a href="{% url 'login_page' %}">Login</a>
+        <a href="{% url 'register_page' %}">Register</a>
     {% endif %}
     <a href="{% url 'about' %}">About</a>
 </div>

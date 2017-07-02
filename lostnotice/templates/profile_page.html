@@ -7,27 +7,26 @@
 Username : <B>{{user_data.username}}</B> <br>
 E-mail : <B>{{user_data.email}}</B> <br>
 <br>
-lost notice list
+<b>lost notice list</b>
 <table id="id_list_table">
 </table>
 {% if lost_noitce_list %}
 	{% for LostNoticeList in lost_noitce_list %}
 		<tr><td><a href="{% url 'detail_lost_item' LostNoticeList.id %}">{{ LostNoticeList.title }}</a></td></tr> <br>
 	{% endfor %}
+{%else%}
+no lost notice list
 {% endif %}
 
-<br>
-find owner list
+<br><br>
+<b>find owner list</b>
 <br>
 {% if found_owner_list %}
 	{% for FindOwnerList in found_owner_list %}
 		<tr><td><a href="{% url 'detail_lost_item' FindOwnerList.id %}">{{ FindOwnerList.title }}</a></td></tr> <br>
 	{% endfor %}
+{%else%}
+no find owner list
 {% endif %}
-<br>
-<a href="{% url 'add_new_lost_item' user_data.id %}" id="add_new_lost_item" class="btn btn-default">Add New Lost Notice</a>
-
-<br><br>
-<a href="{% url 'add_new_found_owner' user_data.id %}" id="add_new_found_owner" class="btn btn-default">Add New Find Owner</a>
 
  {% endblock %}
