@@ -58,14 +58,22 @@ class NewVisitorTest(LiveServerTestCase):
             password.send_keys("user01")
             password.send_keys(Keys.ENTER)
 
-            # check h1 tag
+            
             if i == 1:
+                # check h1 tag
                 check = self.browser.find_elements_by_tag_name('h1')
                 self.assertIn("Register Complete", check[0].text)
+                # check buttom
+                check_buttom_more = self.browser.find_elements_by_tag_name('a')
+                self.assertIn("Login", check_buttom_more[4].text)
                 print("Round 1 Regester Complete.. OK")
             else:
+                # check h1 tag
                 check = self.browser.find_elements_by_tag_name('h1')
                 self.assertIn("Register Failed", check[0].text)
+                # check buttom
+                check_buttom_more = self.browser.find_elements_by_tag_name('a')
+                self.assertIn("Register Again", check_buttom_more[4].text)
                 print("Round 2 Register Failed.. OK")
         #end register check
 
@@ -90,6 +98,10 @@ class NewVisitorTest(LiveServerTestCase):
         # check h1 tag
         check = self.browser.find_elements_by_tag_name('h1')
         self.assertIn("Not User : user02", check[0].text)
+        # check buttom
+        check_buttom_more = self.browser.find_elements_by_tag_name('a')
+        self.assertIn("Login Again", check_buttom_more[4].text)
+        self.assertIn("Register", check_buttom_more[5].text)
         print("Round 1 Login fail.. OK")
         # end check login fail
 
