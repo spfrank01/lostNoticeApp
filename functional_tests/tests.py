@@ -34,6 +34,95 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn("Find owner List", h1_tag[1].text)
         print("First Homepage.. OK")
 
+    def test_register_and_login(self):
+    	# register check 2 round
+    	# round 1 check register complete
+    	# round 2 check register fail
+        for i in range(0, 0):
+        	# go to register page            
+            go_register = self.browser.find_elements_by_tag_name('a')[2]
+            go_register.click()
+
+            # check page
+            check = self.browser.find_elements_by_tag_name('h1')
+            self.assertIn("Register", check[0].text)
+            print("go to register page.. OK")
+
+            username = self.browser.find_element_by_id("id_name")
+            username.send_keys("user01")
+
+            email = self.browser.find_element_by_id("id_email")
+            email.send_keys("user01@email.com")
+
+            password = self.browser.find_element_by_id("id_password")
+            password.send_keys("user01")
+            password.send_keys(Keys.ENTER)
+
+            # check h1 tag
+            if i == 1:
+                check = self.browser.find_elements_by_tag_name('h1')
+                self.assertIn("Register Complete", check[0].text)
+                print("Round 1 Regester Complete.. OK")
+            else:
+                check = self.browser.find_elements_by_tag_name('h1')
+                self.assertIn("Register Failed", check[0].text)
+                print("Round 2 Register Failed.. OK")
+        #end register check
+
+        # start login
+        #go to login
+        # Round 1 check login fail        
+        go_login = self.browser.find_elements_by_tag_name('a')[1]
+        go_login.click()
+
+        # check page
+        check = self.browser.find_elements_by_tag_name('h1')
+        self.assertIn("Login", check[0].text)
+        print("go to login page.. OK")
+
+        username = self.browser.find_element_by_id("id_name")
+        username.send_keys("user02")
+
+        password = self.browser.find_element_by_id("id_password")
+        password.send_keys("user02")
+        password.send_keys(Keys.ENTER)
+
+        # check h1 tag
+        check = self.browser.find_elements_by_tag_name('h1')
+        self.assertIn("Not User : user02", check[0].text)
+        print("Round 1 Login fail.. OK")
+        # end check login fail
+
+        # start check login complete
+        # go to login page
+        go_login = self.browser.find_elements_by_tag_name('a')[1]
+        go_login.click()
+
+        # check page
+        check = self.browser.find_elements_by_tag_name('h1')
+        self.assertIn("Login", check[0].text)
+        print("go to login page.. OK")
+
+        username = self.browser.find_element_by_id("id_name")
+        username.send_keys("user01")
+
+        password = self.browser.find_element_by_id("id_password")
+        password.send_keys("user01")
+        password.send_keys(Keys.ENTER)
+
+        # check h1 tag
+        check = self.browser.find_elements_by_tag_name('h1')
+        self.assertIn("Profile", check[0].text)
+        print("Round 2 Login Complete.. OK")
+        # end login check
+
+
+
+        
+
+
+
+
 
 if __name__ == '__main__':  #7
     unittest.main(warnings='ignore')  #8
