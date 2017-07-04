@@ -2,6 +2,7 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+from lostnotice.models import LostNoticeList, FindOwnerList, userData
 class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):  #2
@@ -55,7 +56,7 @@ class NewVisitorTest(LiveServerTestCase):
             email.send_keys("user01@email.com")
 
             password = self.browser.find_element_by_id("id_password")
-            password.send_keys("user01")
+            password.send_keys("password")
             password.send_keys(Keys.ENTER)
 
             
@@ -92,7 +93,7 @@ class NewVisitorTest(LiveServerTestCase):
         username.send_keys("user02")
 
         password = self.browser.find_element_by_id("id_password")
-        password.send_keys("user02")
+        password.send_keys("password")
         password.send_keys(Keys.ENTER)
 
         # check h1 tag
@@ -119,7 +120,7 @@ class NewVisitorTest(LiveServerTestCase):
         username.send_keys("user01")
 
         password = self.browser.find_element_by_id("id_password")
-        password.send_keys("user01")
+        password.send_keys("password")
         password.send_keys(Keys.ENTER)
 
         # check h1 tag
@@ -127,6 +128,46 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn("Profile", check[0].text)
         print("Round 2 Login Complete.. OK")
         # end login check
+
+
+
+    def test_profile_page(self):
+        # add new user in data base
+        saveNewUser = userData(
+            username="user01", 
+            email="user01@email.com", 
+            password = "password",
+        )
+        saveNewUser.save()
+
+        # go to profile user01
+        self.browser.get(self.live_server_url+'/profile/1')
+
+        # check header bar of profile page
+        link_header_bar = self.browser.find_elements_by_tag_name('a')
+        self.assertIn("Home", link_header_bar[0].text)
+        self.assertIn("Profile", link_header_bar[1].text)
+        self.assertIn("Add new lost notice", link_header_bar[2].text)
+        self.assertIn("Add new find owner", link_header_bar[3].text)
+        self.assertIn("About", link_header_bar[4].text)
+        assert 5 == len(link_header_bar)
+        print("Header bar of Profile page.. OK")
+        
+        # check detail in Profile page
+        # check h1 tag
+        self.assertIn("Profile", self.browser.find_elements_by_tag_name('h1')[0].text)
+        # check b tag, 4 tags
+        self.assertIn("user01", self.browser.find_elements_by_tag_name('b')[0].text)
+        self.assertIn("user01@email.com", self.browser.find_elements_by_tag_name('b')[1].text)
+        self.assertIn("lost notice list", self.browser.find_elements_by_tag_name('b')[2].text)
+        self.assertIn("find owner list", self.browser.find_elements_by_tag_name('b')[3].text)
+        print("Detail of Profile page.. OK")
+
+        # check no list in profile page
+        self.assertIn("no lost notice list", self.browser.page_source)
+        self.assertIn("no find owner list", self.browser.page_source)
+        print("no list in Profile page.. OK")
+
 
 
 

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 from .models import LostNoticeList, FindOwnerList, userData
 
@@ -79,7 +81,7 @@ def save_new_item_lost(request):
 		user_data = userData.objects.get(username=your_name)
 
 		context = {	'user_data' : user_data }
-	return profile(request, user_data.id)
+		return HttpResponseRedirect(reverse('profile', args=(user_data.id,)))
 
 
 def detail_lost_item(request, id):
@@ -128,7 +130,7 @@ def save_new_found_owner(request):
 		user_data = userData.objects.get(username=your_name)
 
 		context = {	'user_data' : user_data }
-	return profile(request, user_data.id)
+		return HttpResponseRedirect(reverse('profile', args=(user_data.id,)))
 
 def detail_found_owner(request, id):
 	found_owner_list = FindOwnerList.objects.get(id=id)
@@ -187,7 +189,7 @@ def login_check(request):
 				print("Hello ")
 				print(user_check[0].password)
 				user_data = userData.objects.get(username=username)
-				return profile(request, user_data.id)
+				return HttpResponseRedirect(reverse('profile', args=(user_data.id,)))
 			else:
 				showH1 = "User : "+user_check[0].username+",  Password fail"
 		else:
