@@ -10,8 +10,8 @@ def home_page(request, lPage = 1, fPage = 1):
 	lPage=int(lPage)
 	fPage=int(fPage)
 	N = 2
-	lost_noitce_list = LostNoticeList.objects.order_by('time_submit')[(int(lPage)-1)*N:int(lPage)*N]
-	found_owner_list = FindOwnerList.objects.order_by('time_found')[(int(fPage)-1)*N:int(fPage)*N]
+	lost_noitce_list = LostNoticeList.objects.order_by('-time_submit')[(int(lPage)-1)*N:int(lPage)*N]
+	found_owner_list = FindOwnerList.objects.order_by('-time_found')[(int(fPage)-1)*N:int(fPage)*N]
 	
 
 	if LostNoticeList.objects.filter(id=1):

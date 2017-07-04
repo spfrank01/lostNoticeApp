@@ -182,6 +182,7 @@ class NewVisitorTest(LiveServerTestCase):
 
 
     def test_add_new_lost_notice(self):
+        time.sleep(0.2)
         # add new user in data base
         saveNewUser = userData(
             username="user01", 
@@ -189,11 +190,11 @@ class NewVisitorTest(LiveServerTestCase):
             password = "password",
         )
         saveNewUser.save()
-        self.browser.get(self.live_server_url+'/profile/1')
         print("add user01.. OK")
+        time.sleep(0.2)
 
         # go to add lost notice page
-        self.browser.find_elements_by_tag_name('a')[2].click()
+        self.browser.get(self.live_server_url+'/1/add_new_lost_notice/')
 
         # check Add Lost Notice page
         self.assertIn('Add Lose Notice', self.browser.title)
@@ -221,7 +222,6 @@ class NewVisitorTest(LiveServerTestCase):
         time.sleep(0.2)
 
         #check link new lost notice in profile page (Lost No.01)
-        time.sleep(0.2)
         assert 6 == len(self.browser.find_elements_by_tag_name('a'))
         self.assertIn('Profile', self.browser.title)
         self.assertIn("Lost No.01" ,self.browser.find_elements_by_tag_name('a')[5].text)
@@ -267,9 +267,10 @@ class NewVisitorTest(LiveServerTestCase):
         saveNewUser.save()
         self.browser.get(self.live_server_url+'/profile/1')
         print("add user01.. OK")
+        time.sleep(0.2)
 
         # go to add find owner page
-        self.browser.find_elements_by_tag_name('a')[3].click()
+        self.browser.get(self.live_server_url+'/1/add_new_found_owner/')
 
         # check Add Find Owner page
         self.assertIn('Add New Find Owner', self.browser.title)
@@ -297,7 +298,6 @@ class NewVisitorTest(LiveServerTestCase):
         time.sleep(0.2)
 
         #check link new lost notice in profile page (Lost No.01)
-        time.sleep(0.2)
         assert 6 == len(self.browser.find_elements_by_tag_name('a'))
         self.assertIn('Profile', self.browser.title)
         self.assertIn("Find No.01" ,self.browser.find_elements_by_tag_name('a')[5].text)
@@ -332,9 +332,129 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn("Email : user01@email.com", self.browser.page_source)
         print("check h1 h2 tag and detail in Detail Find Notice.. OK")
 
+     # use lost notice
+     # set N = 2 (max list in 1 page)
+     # add 5 list, show 3 pages
+    def test_limit_list(self):
+        # add new user in data base
+        saveNewUser = userData(
+            username="user01", 
+            email="user01@email.com", 
+            password = "password",
+        )
+        saveNewUser.save()
 
+        # add First list 
+        self.add_new_lost_notice('First list')
+        time.sleep(0.2)
+        self.assertIn("First list" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("now Page 1", self.browser.page_source)
+        # A Tag, header bar 4 tags + lost list 1 tag
+        assert 5 == len(self.browser.find_elements_by_tag_name('a'))
+        print("add First list.. OK")
 
+        # add Second list 
+        self.add_new_lost_notice('Second list')
+        time.sleep(0.2)
+        self.assertIn("Second list" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("First list" ,self.browser.find_elements_by_tag_name('a')[5].text)
+        self.assertIn("now Page 1", self.browser.page_source)
+        # A Tag, header bar 4 tags + lost list 2 tags
+        assert 6 == len(self.browser.find_elements_by_tag_name('a'))
+        print("add Second list.. OK")
 
+        # add Third list 
+        self.add_new_lost_notice('Third list')
+        time.sleep(0.2)
+        self.assertIn("Third list" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("Second list" ,self.browser.find_elements_by_tag_name('a')[5].text)
+        self.assertNotIn("First list", self.browser.page_source)
+        self.assertIn("now Page 1", self.browser.page_source)
+        # A Tag, header bar 4 tags + lost list 2 tags + link to_2 1 tag
+        assert 7 == len(self.browser.find_elements_by_tag_name('a'))
+        print("add Third list, page 1 no show First list.. OK")
+
+        self.browser.find_element_by_link_text('to 2').click()
+        self.assertIn("First list" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("now Page 2", self.browser.page_source)
+        # A Tag, header bar 4 tags + lost list 1 tag + link to_1 1 tag
+        assert 6 == len(self.browser.find_elements_by_tag_name('a'))
+        print("Go to page 2, show First list.. OK")
+
+        # add Fourth and Fifth list 
+        self.add_new_lost_notice('Fourth list')
+        time.sleep(0.2)
+        self.add_new_lost_notice('Fifth list')
+        time.sleep(0.2)
+        self.assertIn("Fifth list" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("Fourth list" ,self.browser.find_elements_by_tag_name('a')[5].text)
+        self.assertIn("now Page 1", self.browser.page_source)
+        # A Tag, header bar 4 tags + lost list 2 tags + link to_2 1 tag
+        assert 7 == len(self.browser.find_elements_by_tag_name('a'))
+        print("Add Fourth and Fifth list.. OK")
+
+        print("Switch page test.. START")
+        print("START page 1.. OK")
+        # switch page, Now page1, start to 2 > 3 > 2 >1
+        self.browser.find_element_by_link_text('to 2').click()
+        self.assertIn("Third list" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("Second list" ,self.browser.find_elements_by_tag_name('a')[5].text)
+        self.assertIn("now Page 2", self.browser.page_source)
+        # A Tag, header bar 4 tags + lost list 2 tags 
+        #        + link to_1 1 tag + link to_3 1 tag
+        assert 8 == len(self.browser.find_elements_by_tag_name('a'))
+        print("GO to page 2.. OK")
+
+        # Go to page 3
+        self.browser.find_element_by_link_text('to 3').click()
+        self.assertIn("First list" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("now Page 3", self.browser.page_source)
+        # A Tag, header bar 4 tags + lost list 1 tag + link to_2 1 tag
+        assert 6 == len(self.browser.find_elements_by_tag_name('a'))
+        print("GO to page 3.. OK")
+
+        # Go to page 2
+        time.sleep(1)
+        self.browser.find_element_by_link_text('to 2').click()
+        self.assertIn("now Page 2", self.browser.page_source)
+        print("Back to page 2.. OK")
+
+        # Go to page 1
+        time.sleep(1)
+        self.browser.find_element_by_link_text('to 1').click()
+        self.assertIn("now Page 1", self.browser.page_source)
+        print("Back to page 1.. OK")
+        print("Finish Test limit list")
+
+        
+    
+    def add_new_lost_notice(self, title_name):
+    	# go to add lost notice page
+        self.browser.get(self.live_server_url+'/1/add_new_lost_notice/')
+        
+        # input data
+        title = self.browser.find_element_by_id("id_title")
+        title.send_keys(title_name)
+
+        name_item = self.browser.find_element_by_id("id_name_item")
+        name_item.send_keys("Item No.01")
+        
+        detail = self.browser.find_element_by_id("id_detail")
+        detail.send_keys("detail")
+        
+        time_lost = self.browser.find_element_by_id("id_time_lost")
+        time_lost.send_keys("time now")
+        
+        location_lost = self.browser.find_element_by_id("id_location_lost")
+        location_lost.send_keys("this")
+        # click Enter (submit)
+        location_lost.send_keys(Keys.ENTER)
+        print("add "+title_name+".. OK")
+        time.sleep(0.2)    
+
+        # go to Homepage     
+        self.browser.find_elements_by_tag_name('a')[0].click()
+        self.assertIn('Home', self.browser.title)
 
 if __name__ == '__main__':  #7
     unittest.main(warnings='ignore')  #8
