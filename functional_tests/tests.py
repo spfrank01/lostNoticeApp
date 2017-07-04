@@ -40,7 +40,8 @@ class NewVisitorTest(LiveServerTestCase):
     	# round 1 check register complete
     	# round 2 check register fail
         for i in range(0, 0):
-        	# go to register page            
+        	# go to register page      
+            self.assertIn('Register', self.browser.title)      
             go_register = self.browser.find_elements_by_tag_name('a')[2]
             go_register.click()
 
@@ -61,6 +62,8 @@ class NewVisitorTest(LiveServerTestCase):
 
             
             if i == 1:
+                # check title
+                self.assertIn('Register Complete', self.browser.title)
                 # check h1 tag
                 check = self.browser.find_elements_by_tag_name('h1')
                 self.assertIn("Register Complete", check[0].text)
@@ -69,6 +72,8 @@ class NewVisitorTest(LiveServerTestCase):
                 self.assertIn("Login", check_buttom_more[4].text)
                 print("Round 1 Regester Complete.. OK")
             else:
+                # check title
+                self.assertIn('Register Failed', self.browser.title)
                 # check h1 tag
                 check = self.browser.find_elements_by_tag_name('h1')
                 self.assertIn("Register Failed", check[0].text)
@@ -85,6 +90,7 @@ class NewVisitorTest(LiveServerTestCase):
         go_login.click()
 
         # check page
+        self.assertIn('Login', self.browser.title)
         check = self.browser.find_elements_by_tag_name('h1')
         self.assertIn("Login", check[0].text)
         print("go to login page.. OK")
@@ -112,6 +118,7 @@ class NewVisitorTest(LiveServerTestCase):
         go_login.click()
 
         # check page
+        self.assertIn('Login', self.browser.title)
         check = self.browser.find_elements_by_tag_name('h1')
         self.assertIn("Login", check[0].text)
         print("go to login page.. OK")
@@ -144,6 +151,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.get(self.live_server_url+'/profile/1')
 
         # check header bar of profile page
+        self.assertIn('Profile', self.browser.title)
         link_header_bar = self.browser.find_elements_by_tag_name('a')
         self.assertIn("Home", link_header_bar[0].text)
         self.assertIn("Profile", link_header_bar[1].text)
@@ -169,9 +177,6 @@ class NewVisitorTest(LiveServerTestCase):
         print("no list in Profile page.. OK")
 
 
-
-
-        
 
 
 
