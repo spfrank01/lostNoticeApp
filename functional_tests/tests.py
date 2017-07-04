@@ -14,8 +14,8 @@ class NewVisitorTest(LiveServerTestCase):
     def tearDown(self):  #3
         self.browser.quit()
 
-    def test_check_header_bar_and_check_first_homepage(self):
 
+    def test_check_header_bar_and_check_first_homepage(self):
         # Check Title
         self.assertIn('Home', self.browser.title)
 
@@ -36,6 +36,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn("lost notice List", h1_tag[0].text)
         self.assertIn("Find owner List", h1_tag[1].text)
         print("First Homepage.. OK")
+
 
     def test_register_and_login(self):
     	# register check 2 round
@@ -139,7 +140,6 @@ class NewVisitorTest(LiveServerTestCase):
         # end login check
 
 
-
     def test_profile_page(self):
         # add new user in data base
         saveNewUser = userData(
@@ -234,6 +234,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         #check link new lost notice in Homepage (Lost No.01)
         self.assertIn("Lost No.01" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("no find owner list", self.browser.page_source)
         print("Lost No.01 link show in Homepage.. OK")
         time.sleep(0.2)        
 
@@ -256,6 +257,80 @@ class NewVisitorTest(LiveServerTestCase):
         print("check h1 h2 tag and detail in Detail Lost Notice.. OK")
 
 
+    def test_add_new_find_owner(self):
+        # add new user in data base
+        saveNewUser = userData(
+            username="user01", 
+            email="user01@email.com", 
+            password = "password",
+        )
+        saveNewUser.save()
+        self.browser.get(self.live_server_url+'/profile/1')
+        print("add user01.. OK")
+
+        # go to add find owner page
+        self.browser.find_elements_by_tag_name('a')[3].click()
+
+        # check Add Find Owner page
+        self.assertIn('Add New Find Owner', self.browser.title)
+        h1_tag = self.browser.find_elements_by_tag_name('h1')
+        self.assertIn("Add New Find Owner", h1_tag[0].text)
+        
+        # input data
+        title = self.browser.find_element_by_id("id_title")
+        title.send_keys("Find No.01")
+
+        name_item = self.browser.find_element_by_id("id_name_item")
+        name_item.send_keys("Item No.01")
+        
+        detail = self.browser.find_element_by_id("id_detail")
+        detail.send_keys("detail")
+        
+        time_lost = self.browser.find_element_by_id("id_time_lost")
+        time_lost.send_keys("time now")
+        
+        location_lost = self.browser.find_element_by_id("id_location_lost")
+        location_lost.send_keys("this")
+        # click Enter (submit)
+        location_lost.send_keys(Keys.ENTER)
+        print("add new find owner.. OK")
+        time.sleep(0.2)
+
+        #check link new lost notice in profile page (Lost No.01)
+        time.sleep(0.2)
+        assert 6 == len(self.browser.find_elements_by_tag_name('a'))
+        self.assertIn('Profile', self.browser.title)
+        self.assertIn("Find No.01" ,self.browser.find_elements_by_tag_name('a')[5].text)
+        print("Find No.01 link show in Profile page.. OK")
+        time.sleep(0.2)        
+
+        # go to Homepage     
+        self.browser.find_elements_by_tag_name('a')[0].click()
+        self.assertIn('Home', self.browser.title)
+
+        #check link new lost notice in Homepage (Lost No.01)
+        self.assertIn("Find No.01" ,self.browser.find_elements_by_tag_name('a')[4].text)
+        self.assertIn("no lost notice list", self.browser.page_source)
+        print("Find No.01 link show in Homepage.. OK")
+        time.sleep(0.2)        
+
+        # go to Find No.01 page
+        self.browser.find_elements_by_tag_name('a')[4].click()
+
+        # check Find No.01 page             
+        self.assertIn('Detail Find Owner', self.browser.title)
+        self.assertIn ("Detail Find Owner", self.browser.find_elements_by_tag_name('h2')[0].text)
+        self.assertIn ("Find No.01", self.browser.find_elements_by_tag_name('h1')[0].text)
+
+        # check detail in page source
+        self.assertIn("Name item : Item No.01", self.browser.page_source)
+        self.assertIn("Detail : detail", self.browser.page_source)
+        self.assertIn("Time lost : time now", self.browser.page_source)
+        self.assertIn("Location : this", self.browser.page_source)
+        self.assertIn("Find status : False", self.browser.page_source)
+        self.assertIn("Username : user01", self.browser.page_source)
+        self.assertIn("Email : user01@email.com", self.browser.page_source)
+        print("check h1 h2 tag and detail in Detail Find Notice.. OK")
 
 
 

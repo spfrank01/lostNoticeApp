@@ -950,3 +950,59 @@ Full stack:
 1499167931394	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
 1499167941712	Marionette	INFO	Listening on port 44824
 1499167942075	Marionette	WARN	TLS certificate errors will be ignored for this session
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1499168829978	geckodriver	INFO	Listening on 127.0.0.1:47434
+1499168831288	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1499168839821	Marionette	INFO	Listening on port 46051
+1499168839967	Marionette	WARN	TLS certificate errors will be ignored for this session
+1499168939728	geckodriver	INFO	Listening on 127.0.0.1:58678
+1499168941314	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1499168953706	Marionette	INFO	Listening on port 41899
+1499168954395	Marionette	WARN	TLS certificate errors will be ignored for this session
+1499168993042	Marionette	INFO	Ceased listening
+1499168993366	Marionette	INFO	Ceased listening
+1499168994383	Marionette	INFO	Ceased listening
+1499168994613	Marionette	INFO	Ceased listening
+1499168995118	Marionette	INFO	Ceased listening
+1499168995415	Marionette	INFO	Ceased listening
+1499168995771	Marionette	INFO	Ceased listening
+1499169004736	Marionette	INFO	Ceased listening
+1499169012917	Marionette	INFO	Ceased listening
+1499169014445	Marionette	INFO	Ceased listening
+1499169015822	Marionette	INFO	Ceased listening
+1499169017231	Marionette	INFO	Ceased listening

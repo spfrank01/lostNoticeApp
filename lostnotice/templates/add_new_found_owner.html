@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Add New-Found{% endblock %}
+{% block title %}Add New Find Owner{% endblock %}
 
 {% block content %} 
 
-<h1>Add New Found </h1>
+<h1>Add New Find Owner</h1>
 Username : <B>{{user_data.username}}</B> <br>
 E-mail : <B>{{user_data.email}}</B> <br><br>
         <form action="{% url 'save_new_found_owner' %}" method="POST">
