@@ -106,6 +106,14 @@ class ProfileShowListTest(TestCase):
 			response.content.decode()
 		)
 
+	def test_show_list_only_this_user(self):
+		self.create_user01()
+		LostNoticeList.objects.create(title="list of user01", your_name="user01")
+		LostNoticeList.objects.create(title="list of user02", your_name="user02")
+		response = self.client.get('/profile/%d/' % (userData.objects.first().id,))
+		self.assertContains(response, 'list of user01')
+		self.assertNotContains(response, 'list of user02')
+
 
 class RegisterTest(TestCase):
 
@@ -236,3 +244,4 @@ class AddNewNoticeTest(TestCase):
 		self.assertEqual("unknown", FindOwnerList.objects.first().detail)
 		self.assertEqual("user01", FindOwnerList.objects.first().your_name)
 		self.assertEqual("user01@email.com", FindOwnerList.objects.first().your_email)
+
