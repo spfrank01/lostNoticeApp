@@ -23,7 +23,7 @@ no lost notice list
 <br>
 {% if found_owner_list %}
 	{% for FindOwnerList in found_owner_list %}
-		<tr><td><a href="{% url 'detail_lost_item' FindOwnerList.id %}">{{ FindOwnerList.title }}</a></td></tr> <br>
+		<tr><td><a href="{% url 'detail_found_owner' FindOwnerList.id %}">{{ FindOwnerList.title }}</a></td></tr> <br>
 	{% endfor %}
 {%else%}
 no find owner list

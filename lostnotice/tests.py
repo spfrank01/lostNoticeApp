@@ -81,6 +81,33 @@ class ShowListInHomepageTest(TestCase):
 		self.assertIn('<a href="/LFList/1/1/"', response.content.decode())
 
 
+class ProfileShowListTest(TestCase):
+
+	def create_user01(self):
+		userData.objects.create(
+			username="user01",
+			email="user01@email.com")
+
+
+	def test_show_lost_notice_list(self):
+		self.create_user01()
+		LostNoticeList.objects.create(title="Lost_Notice_List", your_name="user01")
+		response = self.client.get('/profile/%d/' % (userData.objects.first().id,))
+		self.assertIn(
+			'<a href="/lost_notice/1/">Lost_Notice_List</a>', 
+			response.content.decode()
+		)
+
+	def test_show_find_owner_list(self):
+		self.create_user01()
+		FindOwnerList.objects.create(title="Find_Owner_List", your_name="user01")
+		response = self.client.get('/profile/%d/' % (userData.objects.first().id,))
+		self.assertIn(
+			'<a href="/found_owner/1/">Find_Owner_List</a>', 
+			response.content.decode()
+		)
+
+#class AddNewListTets(T):
 
 
 		
