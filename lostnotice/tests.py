@@ -1,8 +1,8 @@
 from django.core.urlresolvers import resolve
 from django.test import TestCase
 from django.http import HttpRequest
-from lostnotice.views import *
-from lostnotice.models import LostNoticeList, FindOwnerList, userData
+from lostnotice.views import home_page
+from lostnotice.models import *
 
 class HomePageTest(TestCase):
 
@@ -53,7 +53,6 @@ class ShowListInHomepageTest(TestCase):
 		LostNoticeList.objects.create(title="Third_List")
 		response = self.client.get('/LFList/2/1/')
 		self.assertIn('<a href="/LFList/1/1/"', response.content.decode())
-
 
 	def test_show_find_owner_list(self):
 		FindOwnerList.objects.create(title="First_List")
@@ -129,6 +128,7 @@ class RegisterTest(TestCase):
 		self.assertIn('Register Complete', response.content.decode())
 		#self.assertEqual(response['location'], '/')
 
+
 	def test_check_to_login_buttom_of_register_complete(self):
 		response = self.register_new("user01")
 		self.assertIn(
@@ -136,9 +136,7 @@ class RegisterTest(TestCase):
 			response.content.decode()
 		)
 		self.assertIn('>Login</a>', response.content.decode())
-		
-
-		
+				
 	def test_register_fail(self):
 		self.register_new("user01")
 		response = self.register_new("user01") # register again
@@ -152,6 +150,7 @@ class RegisterTest(TestCase):
 			response.content.decode()
 		)
 		self.assertIn('>Register Again</a>', response.content.decode())
+
 
 class LoginTest(TestCase):
 
@@ -189,7 +188,7 @@ class LoginTest(TestCase):
 			response.content.decode()
 		)
 
-	def test_show_link_off_login_fail(self):
+	def test_show_link_of_login_fail(self):
 		self.register_user01()
 		response = self.login("user00", "abc")
 		self.assertIn('>Login Again</a>', response.content.decode())
