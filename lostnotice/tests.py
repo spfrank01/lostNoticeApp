@@ -186,3 +186,53 @@ class LoginTest(TestCase):
 		response = self.login("user00", "abc")
 		self.assertIn('>Login Again</a>', response.content.decode())
 		self.assertIn('>Register</a>', response.content.decode())
+
+
+class AddNewNoticeTest(TestCase):
+
+	def register_user01(self):
+		response = self.client.post('/register_complete/',
+						data={	'username': "user01",
+								'email' : "user01@email.com",
+								'password' : "password"})
+
+	def test_add_new_lost_notice(self):
+		self.register_user01()
+		response = self.client.post('/save_new_item_lost/',
+						data={	
+							'title' : "lost pen",
+							'name_item' : "pen",
+							'time_lost' : "now",
+							'location_lost' : "unknown",
+							'detail' : "unknown",
+							'your_name' : "user01",
+							'your_email' : "user01@email.com"
+						})
+		self.assertEqual("lost pen", LostNoticeList.objects.first().title)
+		self.assertEqual("pen", LostNoticeList.objects.first().name_item)
+		self.assertEqual("now", LostNoticeList.objects.first().time_lost)
+		self.assertEqual("unknown", LostNoticeList.objects.first().location_lost)
+		self.assertEqual("unknown", LostNoticeList.objects.first().detail)
+		self.assertEqual("user01", LostNoticeList.objects.first().your_name)
+		self.assertEqual("user01@email.com", LostNoticeList.objects.first().your_email)
+
+
+	def test_add_new_find_owner(self):
+		self.register_user01()
+		response = self.client.post('/save_new_found_owner/',
+						data={	
+							'title' : "lost pen",
+							'name_item' : "pen",
+							'time_found' : "now",
+							'location_found' : "unknown",
+							'detail' : "unknown",
+							'your_name' : "user01",
+							'your_email' : "user01@email.com"
+						})
+		self.assertEqual("lost pen", FindOwnerList.objects.first().title)
+		self.assertEqual("pen", FindOwnerList.objects.first().name_item)
+		self.assertEqual("now", FindOwnerList.objects.first().time_found)
+		self.assertEqual("unknown", FindOwnerList.objects.first().location_found)
+		self.assertEqual("unknown", FindOwnerList.objects.first().detail)
+		self.assertEqual("user01", FindOwnerList.objects.first().your_name)
+		self.assertEqual("user01@email.com", FindOwnerList.objects.first().your_email)
