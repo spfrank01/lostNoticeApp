@@ -1,5 +1,4 @@
 from django.core.urlresolvers import resolve
-from django.template.loader import render_to_string
 from django.test import TestCase
 from django.http import HttpRequest
 from lostnotice.views import *
@@ -107,7 +106,44 @@ class ProfileShowListTest(TestCase):
 			response.content.decode()
 		)
 
-#class AddNewListTets(T):
 
+class RegisterTest(TestCase):
+
+	def register_new(self, username):
+		response = self.client.post('/register_complete/',
+						data={	'username': username,
+								'email' : "email",
+								'password' : "password"})
+		#print(response.content.decode())
+		return response
+
+	def test_register_complete(self):
+		response = self.register_new("user01")
+		self.assertIn('Register Complete', response.content.decode())
+		#self.assertEqual(response['location'], '/')
+
+	def test_check_to_login_buttom_of_register_complete(self):
+		response = self.register_new("user01")
+		self.assertIn(
+			'<a href="/login_page/" id="login_page"', 
+			response.content.decode()
+		)
+		self.assertIn('>Login</a>', response.content.decode())
+		
+
+		
+	def test_register_fail(self):
+		self.register_new("user01")
+		response = self.register_new("user01") # register again
+		self.assertIn('Register Failed', response.content.decode())
+
+	def test_check_register_again_buttom_of_register_fail(self):
+		self.register_new("user01")
+		response = self.register_new("user01") # register again
+		self.assertIn(
+			'<a href="/register_page/" id="register_page"', 
+			response.content.decode()
+		)
+		self.assertIn('>Register Again</a>', response.content.decode())
 
 		
