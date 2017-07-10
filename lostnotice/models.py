@@ -10,7 +10,7 @@ class LostNoticeList(models.Model):
 	your_name = models.CharField(max_length=200)
 	your_email = models.CharField(max_length=200)
 	found_it = models.BooleanField(default=False)
-	time_submit = models.DateTimeField('date published')
+	time_submit = models.DateTimeField(null=True, blank=True)
 
 class FindOwnerList(models.Model):
     title = models.CharField(max_length=200)
@@ -21,10 +21,10 @@ class FindOwnerList(models.Model):
     your_name = models.CharField(max_length=200)
     your_email = models.CharField(max_length=200)
     found_owner = models.BooleanField(default=False)
-    time_submit = models.DateTimeField('date published')
+    time_submit = models.DateTimeField(null=True, blank=True)
 
 class userData(models.Model):
 	username = models.CharField(max_length=100)
 	email = models.CharField(max_length=100)
 	password = models.CharField(max_length=100)
-time_register = models.DateTimeField('date published')
+	time_register = models.DateTimeField(null=True, blank=True)

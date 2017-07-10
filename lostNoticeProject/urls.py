@@ -4,6 +4,9 @@ from lostnotice import views
 
 urlpatterns = [
     url(r'^$', views.home_page, name='home'),
+    # LFList = LostFindList
+    # lPage = page of Lost Notice list
+    # fPage = page of Find Owner list
     url(r'^LFList/(?P<lPage>[0-9]+)/(?P<fPage>[0-9]+)/$', views.home_page, name='home'),
 
     #lost notice
