@@ -112,9 +112,8 @@ class RegisterTest(TestCase):
 	def register_new(self, username):
 		response = self.client.post('/register_complete/',
 						data={	'username': username,
-								'email' : "email",
+								'email' : "email@email.com",
 								'password' : "password"})
-		#print(response.content.decode())
 		return response
 
 	def test_register_complete(self):
@@ -146,4 +145,44 @@ class RegisterTest(TestCase):
 		)
 		self.assertIn('>Register Again</a>', response.content.decode())
 
-		
+class LoginTest(TestCase):
+
+	def register_user01(self):
+		response = self.client.post('/register_complete/',
+						data={	'username': "user01",
+								'email' : "user01@email.com",
+								'password' : "password"})
+
+	def login(self, username, password):
+		response = self.client.post('/login_check/',
+						data={	'username': username,
+								'password' : password})
+		return response
+
+
+	def test_login_complete(self):
+		self.register_user01()
+		response = self.login("user01", "password")
+		self.assertEqual(response.status_code, 302)
+		#self.assertIn('<title>Profile</title>', response.content.decode())
+
+	def test_login_fail_wrong_username(self):
+		self.register_user01()
+		response = self.login("user00", "password")
+		self.assertIn('<title>Login Fail</title>', response.content.decode())
+		self.assertIn('<h1>Not User : user00</h1>', response.content.decode())
+
+	def test_login_fail_wrong_password(self):
+		self.register_user01()
+		response = self.login("user01", "abc")
+		self.assertIn('<title>Login Fail</title>', response.content.decode())		
+		self.assertIn(
+			'<h1>User : user01,  Password fail</h1>', 
+			response.content.decode()
+		)
+
+	def test_show_link_off_login_fail(self):
+		self.register_user01()
+		response = self.login("user00", "abc")
+		self.assertIn('>Login Again</a>', response.content.decode())
+		self.assertIn('>Register</a>', response.content.decode())

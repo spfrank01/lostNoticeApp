@@ -177,7 +177,7 @@ def login_page(request):
 
 def login_check(request):	
 	try:
-		username = request.POST['name']
+		username = request.POST['username']
 		password = request.POST['password']
 	except:
 		username = ""
@@ -186,8 +186,6 @@ def login_check(request):
 		user_check = userData.objects.filter(username=username)
 		if user_check:
 			if password == user_check[0].password:
-				print("Hello ")
-				print(user_check[0].password)
 				user_data = userData.objects.get(username=username)
 				return HttpResponseRedirect(reverse('profile', args=(user_data.id,)))
 			else:
